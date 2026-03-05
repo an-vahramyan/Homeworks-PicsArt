@@ -3,6 +3,7 @@
 const { type } = require("@testing-library/user-event/dist/cjs/utility/type.js");
 
 /*
+1.
 Write a function that takes a string as 
 an argument and returns
 the number of characters in the string.
@@ -18,13 +19,17 @@ function str_chars(str) {
 }
 console.log(str_chars(str));
 
-/*Create a function that converts 
+/*
+2.
+Create a function that converts 
 a given string to uppercase.*/
 function toUpper(str) {
   return str.toUpperCase();
 }
 console.log(toUpper(str));
-/*Write a function that accepts two 
+/*
+3.
+Write a function that accepts two 
 numbers and returns their sum. */
 let a = 30;
 let b = 20;
@@ -32,7 +37,9 @@ function sum_of_two_nums(firstNum, secondNum) {
   return firstNum + secondNum;
 }
 console.log(sum_of_two_nums(a, b));
-/*Reverse the string "hello" 
+/*
+4.
+Reverse the string "hello" 
 without using a built-in function. */
 let text = "hello";
 function reverse_str(str) {
@@ -57,7 +64,9 @@ function reverse_str_swap(str) {
   return arr.join("");
 }
 console.log(reverse_str_swap(text));
-/*Check if the string "Learning JavaScript" 
+/*
+5.
+Check if the string "Learning JavaScript" 
 contains the substring "Java". */
 let char = "Learning JavaScript";
 function contains(str, substr) {
@@ -80,7 +89,9 @@ function contains_cast(str, substr) {
 }
 console.log(contains_cast(char, "Java"));
 
-/*Find the index of the value 9 in the array let numList = [3, 6, 9, 12];.*/
+/*
+6.
+Find the index of the value 9 in the array let numList = [3, 6, 9, 12];.*/
 let numList = [3, 6, 9, 12];
 function find_index(nums, n) {
   return nums.indexOf(n);
@@ -93,7 +104,9 @@ function find_index_cast(nums, n) {
   return -1;
 }
 console.log(find_index_cast(numList, 9));
-/*Compute the sum of all elements in the array 
+/*
+7.
+Compute the sum of all elements in the array 
 let expenses = [50, 75, 100];. */
 let expenses = [50, 75, 100];
 function sum_of_all(arr) {
@@ -105,10 +118,12 @@ function sum_of_all(arr) {
 }
 console.log(sum_of_all(expenses));
 
-/* Write a function to check if a given string 
+/* 
+8.
+Write a function to check if a given string 
 contains another substring.*/
 function contain(str, sub) {
-  for (let i = 0; i < str.length - sub.length; i++) {
+  for (let i = 0; i <= str.length - sub.length; i++) {
     let match = true;
     for (let j = 0; j < sub.length; j++) {
       if (str[i + j] !== sub[j]) {
@@ -120,7 +135,9 @@ function contain(str, sub) {
     return false;
   }
 }
-/*Write a function that returns the sum of 
+/*
+9.
+Write a function that returns the sum of 
 all elements in an array of numbers. */
 function return_sum_of_array(arr) {
   let sum = 0;
@@ -130,13 +147,17 @@ function return_sum_of_array(arr) {
   return sum;
 }
 
-/*Create a function that accepts a number and 
+/*
+10.
+Create a function that accepts a number and 
 returns whether it is even or odd. */
 function is_even_or_odd(num) {
   return num % 2 === 0 ? "even" : "odd";
 }
 
-/*Write a function that returns the exact
+/*
+11.
+Write a function that returns the exact
 type of a given value and correctly handles 
 null, arrays, objects, 
 and functions (typeof alone is not sufficient). */
@@ -158,11 +179,14 @@ function getType(value) {
   return "object";
 }
 
-/*Write a function that returns true if a 
+/*
+12.
+Write a function that returns true if a 
 given value is falsy and false otherwise; 
 test it with 0, "", null, undefined, NaN, and false. */
 function is_falsy(val) {
   return !Boolean(val);
+  // or return !val;
 }
 
 function is_falsy_cast(val) {
@@ -171,7 +195,7 @@ function is_falsy_cast(val) {
     val === "" ||
     val === null ||
     val === undefined ||
-    val === Number.isNaN(val) ||
+    Number.isNaN(val) ||
     val === false
   ) {
     return "value is falsy";
@@ -179,7 +203,9 @@ function is_falsy_cast(val) {
   return "value is truthy";
 }
 
-/*Write a function that compares two values and
+/*
+13.
+Write a function that compares two values and
 returns an object containing the results of
 both loose (==) and strict (===) comparison.*/
 function compareValues(val1, val2) {
@@ -189,7 +215,9 @@ function compareValues(val1, val2) {
   };
 }
 
-/*Write a function that returns true only if a
+/*
+14.
+Write a function that returns true only if a
 value is a number, not NaN, finite, and a safe integer. */
 function is_number(num) {
   return (
@@ -198,7 +226,9 @@ function is_number(num) {
   );
 }
 
-/*Write a function that attempts to 
+/*
+15.
+Write a function that attempts to 
 convert a value to a number and 
 returns null if the result is NaN. */
 function convert(val){
@@ -206,7 +236,9 @@ function convert(val){
     return Number.isNaN(num) ? null : num;
 }
 
-/*Write a function that explicitly converts
+/*
+16.
+Write a function that explicitly converts
 any value to a
 boolean without using if statements.*/
 function to_bool(val){
@@ -214,22 +246,29 @@ function to_bool(val){
 }
 //կամ կրկնակի ժխտումով !! let to_bool = val => !!val;
 
-/* Write a function that returns true only for plain 
+/* 
+17.
+Write a function that returns true only for plain 
 objects and false for arrays, null, and functions. */
 function is_object(obj){
     return typeof obj === "object" && 
     obj !== null &&
-    !Array.isArray(obj);
+    !Array.isArray(obj) && 
+    Object.getPrototypeOf(obj) === Object.prototype;
 }
 
-/*Write a function that returns true if
+/*
+18.
+Write a function that returns true if
 a value is a primitive type and false otherwise. */
 function primitive_or_reference (val){
   return val === null || 
   (typeof val !== "object" && typeof val !== "function");
 }
 
-/*Write a function that returns the sum 
+/*
+20.
+Write a function that returns the sum 
 of two values only if both are numbers;
 otherwise return the string "Invalid input". */
 function return_sum(a,b){
