@@ -1,7 +1,5 @@
 "use strict";
 
-const { type } = require("@testing-library/user-event/dist/cjs/utility/type.js");
-
 /*
 1.
 Write a function that takes a string as 
