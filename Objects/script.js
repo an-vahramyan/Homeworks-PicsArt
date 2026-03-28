@@ -6,16 +6,16 @@ with some overlapping properties. Use `Object.assign()`
 to merge them into a new object called `mergedPerson`.  
 */
 let person1 = {
-  fisrtName: "Anna",
-  lastName: "Grigoryan",
+  fisrtName: "Jhon",
+  lastName: "Smith",
   age: 50,
-  country: "Armenia",
+  country: "America",
 };
 let person2 = {
-  fisrtName: "Ani",
-  lastName: "Gasparyan",
+  fisrtName: "Alex",
+  lastName: "Doe",
   age: 40,
-  country: "Armenia",
+  country: "America",
 };
 // let margedPerson = Object.assign(person1, person2);
 // console.log(margedPerson);
@@ -31,8 +31,8 @@ using `Object.freeze()`. Then attempt to modify
 one of its properties and log the outcome.
 */
 const student = {
-  fisrtName: "Ani",
-  lastName: "Gasparyan",
+  fisrtName: "Jhon",
+  lastName: "Doe",
   age: 20,
 };
 Object.freeze(student);
@@ -125,11 +125,11 @@ function isEqual(obj1, obj2){
     return true;
 }
 let std1 = {
-    name: "anna",
+    name: "Jhon",
     age: 20
 };
 let std2 = {
-    name: 'anna',
+    name: 'Jhon',
     age:20
 };
 console.log(isEqual(std1,std2));

@@ -273,5 +273,5 @@ function return_sum(a,b){
 if(typeof a === "number" && typeof b === "number" && !Number.isNaN(a) && !Number.isNaN(b)){
     return a+b;
 }
-return "invaid input";
+return "invalid input";
 }
