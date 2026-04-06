@@ -13,7 +13,7 @@ class Library {
   }
   set name(value) {
     if (typeof value !== "string" || value.trim().length === 0) {
-      throw new Error("name must not be an empty string");
+      return "name must not be an empty string";
     }
     this.#name = value;
   }
@@ -27,13 +27,13 @@ class Library {
   //methods
   addBook(book) {
     if (!(book instanceof Book)) {
-      throw new Error("only book instances allowed");
+      return "only book instances allowed";
     }
     this.#books.push(book);
   }
   registerReader(reader) {
     if (!(reader instanceof Reader)) {
-      throw new Error("Only reader instances allowed");
+      return "Only reader instances allowed";
     }
     this.#readers.push(reader);
   }
@@ -52,20 +52,20 @@ class Library {
   giveBookToReader(title, reader) {
     const book = this.findBookByTitle(title);
     if (!book) {
-      throw new Error("book doesn't exist");
+      return "book doesn't exist";
     }
     if (!book.isAvailable) {
-      throw new Error("book isn't available");
+      return "book isn't available";
     }
     reader.takeBook(book);
   }
   acceptBookFromReader(title, reader) {
     const book = this.findBookByTitle(title);
     if (!book) {
-      throw new Error("book doesn't exist");
+      return "book doesn't exist";
     }
     reader.giveBackBook(book);
-    return `book was returned`;
+    return "book was returned";
   }
   showAvailableBooks() {
     return this.#books.filter((b) => b.isAvailable);
@@ -74,7 +74,7 @@ class Library {
     return this.#books.map((b) => b.getInfo());
   }
   getLibraryInfo() {
-    return `Central Library: ${this.#books.length} books, ${this.#readers.length} readers`;
+    return `${this.#name}: ${this.#books.length} books, ${this.#readers.length} readers`;
   }
 }
 class Book {
@@ -94,7 +94,7 @@ class Book {
   }
   set title(value) {
     if (typeof value !== "string" || value.trim().length === 0)
-      throw new Error("title must not be an empty string");
+      return "title must not be an empty string";
     this.#title = value;
   }
   //author
@@ -103,7 +103,7 @@ class Book {
   }
   set author(value) {
     if (typeof value !== "string" || value.trim().length === 0)
-      throw new Error("author must not be an empty string");
+      return "author must not be an empty string";
     this.#author = value;
   }
   //year
@@ -112,7 +112,7 @@ class Book {
   }
   set year(value) {
     if (typeof value !== "number" || value <= 0)
-      throw new Error("year must be a positive number");
+      return "year must be a positive number";
     this.#year = value;
   }
   //isAvailible
@@ -123,17 +123,17 @@ class Book {
   //methods
   borrowBook() {
     if (!this.#isAvailable) {
-      return `book is already borrowed`;
+      return "book is already borrowed";
     }
     this.#isAvailable = false;
-    return `book was borrowed`;
+    return "book was borrowed";
   }
   returnBook() {
     if (this.#isAvailable) {
-      throw new Error("book is om library");
+      return "book is om library";
     }
     this.#isAvailable = true;
-    return `book was returned`;
+    return "book was returned";
   }
   matchesTitle(word) {
     if (typeof word !== "string" || word.trim() === "") return false;
@@ -156,7 +156,7 @@ class Reader {
   }
   set name(value) {
     if (typeof value !== "string" || value.trim().length === 0) {
-      throw new Error("name must not be an empty string");
+      return "name must not be an empty string";
     }
     this.#name = value;
   }
@@ -171,10 +171,10 @@ class Reader {
   //methods
   takeBook(book) {
     if (!book.isAvailable) {
-      throw new Error("book is not available");
+      return "book is not available";
     }
     if (this.#borrowedBooks.includes(book)) {
-      throw new Error("reader has this book");
+      return "reader has this book";
     }
     book.borrowBook();
     this.#borrowedBooks.push(book);
@@ -187,16 +187,16 @@ class Reader {
     // book.returnBook();
     // this.#borrowedBooks.splice(index,1);
     if (!this.#borrowedBooks.includes(book)) {
-      throw new Error("this book wans't borrowed by reader");
+      return "this book wans't borrowed by reader";
     }
-    book.borrowBook();
+    book.returnBook();
     this.#borrowedBooks = this.#borrowedBooks.filter((b) => b !== book);
   }
   hasBook(book) {
     // return this.#borrowedBooks.includes(book);
     return this.#borrowedBooks.some((b) => b === book);
   }
-  showBorrowedBook() {
+  showBorrowedBooks() {
     return this.#borrowedBooks.map((book) => book.title);
   }
   getInfo() {
@@ -240,7 +240,7 @@ console.log(library.showAvailableBooks());
 
 console.log("=== Give book to reader ===");
 library.giveBookToReader("The Hobbit", reader1);
-console.log(reader1.showBorrowedBook());
+console.log(reader1.showBorrowedBooks());
 console.log(book1.getInfo());
 
 console.log("=== Give another book to reader ===");
@@ -252,7 +252,7 @@ library.giveBookToReader("The Hobbit", reader2);
 
 console.log("=== Return book ===");
 library.acceptBookFromReader("The Hobbit", reader1);
-console.log(reader1.showBorrowedBook());
+console.log(reader1.showBorrowedBooks());
 console.log(book1.getInfo());
 
 console.log("=== Final available books ===");
