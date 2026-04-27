@@ -1,4 +1,4 @@
-// 1. հաղորդագրություններ ուղարկելու իրականացում
+// 1. հաղորդագրություններ ուղարկելու Implementation
 class EmailSender {
   send(message) {
     console.log(`Email sent: ${message}`);
@@ -11,7 +11,7 @@ class SmsSender {
   }
 }
 
-// 2. Աբստրակցիա
+// 2. Abstraction
 class Notification {
   constructor(sender) {
     this.sender = sender; // Bridge ուղարկման ձևի և ծանուցման միջև

@@ -1,11 +1,11 @@
-// 1. իրականացման ինտերֆեյս (Device)
+// 1. Interface Implementation (Device)
 interface Device {
   turnOn(): void;
   turnOff(): void;
   setVolume(percent: number): void;
 }
 
-// 2. կոնկրետ իրականացումներ
+// 2. կոնկրետ Implemenation-ներ
 class Tv implements Device {
   turnOn() {
     console.log("The TV is on");
@@ -34,7 +34,7 @@ class Radio implements Device {
   }
 }
 
-// 3. Աբստրակցիա (RemoteControl)
+// 3. Abstraction (RemoteControl)
 abstract class RemoteControl {
   protected device: Device; // Bridge
 
